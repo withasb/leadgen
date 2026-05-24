@@ -1,0 +1,21 @@
+{
+  "name": "leadgen-backend",
+  "version": "1.0.0",
+  "description": "LeadGen API Backend",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "keywords": [
+    "leadgen",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC"
+}
