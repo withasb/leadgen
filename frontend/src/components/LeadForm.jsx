@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 const defaultValues = {
   country: '',
@@ -11,33 +11,36 @@ const defaultValues = {
 const LeadForm = ({ onSearch }) => {
   const [fields, setFields] = useState(defaultValues);
 
-  const handleChange = e => {
-    setFields({ ...fields, [e.target.name]: e.target.value });
-  };
+  const handleChange = useCallback(e => {
+    setFields(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  }, []);
 
-  const handleSubmit = e => {
+  const handleSubmit = useCallback(e => {
     e.preventDefault();
     if (fields.country && fields.state && fields.city) {
       onSearch(fields);
     }
-  };
+  }, [fields, onSearch]);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setFields(defaultValues);
-  };
+  }, []);
 
   return (
-    <form onSubmit={handleSubmit} style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: '12px',
-      alignItems: 'center',
-      margin: '16px 0',
-      padding: '20px',
-      background: '#fff',
-      borderRadius: '4px',
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
-    }}>
+    <form 
+      onSubmit={handleSubmit} 
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '12px',
+        alignItems: 'center',
+        margin: '16px 0',
+        padding: '20px',
+        background: '#fff',
+        borderRadius: '4px',
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+      }}
+    >
       <input
         required
         name="country"
@@ -80,10 +83,14 @@ const LeadForm = ({ onSearch }) => {
         <button type="submit" style={{ padding: '10px 24px' }}>
           Search
         </button>
-        <button type="button" onClick={handleReset} style={{
-          padding: '10px 24px',
-          background: '#999'
-        }}>
+        <button 
+          type="button" 
+          onClick={handleReset} 
+          style={{
+            padding: '10px 24px',
+            background: '#999'
+          }}
+        >
           Reset
         </button>
       </div>

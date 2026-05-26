@@ -1,29 +1,138 @@
-# Dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Production
-dist/
-build/
-
+```
 # Environment variables
 .env
 .env.local
-.env.*.local
+.env.*
+
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+build/
+target/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py.class
+*.py.backup
+*.py.swp
+*.py.swo
+*.py~
+*.py.tmp
+*.py.temp
+*.py.bak
+*.py.save
+*.py.orig
+*.py.rej
+*.py.patch
+*.py.diff
+*.py.log
+*.py.cache
+*.py.compiled
+*.py.bin
+*.py.out
+*.py.obj
+*.py.o
+*.py.a
+*.py.so
+*.py.dll
+*.py.exe
+*.py.class
+*.py.jar
+*.py.war
+*.py.ear
+*.py.zip
+*.py.tar
+*.py.gz
+*.py.bz2
+*.py.xz
+*.py.7z
+*.py.rar
+*.py.zst
+*.py.lz4
+*.py.lzh
+*.py.cab
+*.py.arj
+*.py.rpm
+*.py.deb
+*.py.Z
+*.py.lz
+*.py.lzo
+*.py.tar.gz
+*.py.tar.bz2
+*.py.tar.xz
+*.py.tar.zst
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Logs
+*.log
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-.DS_Store
+*.tmp
 
 # OS
-Thumbs.db
 .DS_Store
+Thumbs.db
 
-# Misc
-.cache/
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# MyPy
+.mypy_cache/
+
+# Pytest
+.pytest_cache/
+
+# Gradle
+.gradle/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.save
+*.orig
+*.rej
+*.patch
+*.diff
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+```
