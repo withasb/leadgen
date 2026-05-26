@@ -1,69 +1,21 @@
 import express from 'express';
 import cors from 'cors';
+import { PORT, CORS_ORIGIN } from './config/index.js';
+import leadsRouter from './routes/leads.js';
 
 const app = express();
-const PORT = 3001;
 
-app.use(cors());
+// Middleware
+app.use(cors({ origin: CORS_ORIGIN }));
 app.use(express.json());
-
-// Dummy leads data for demonstration
-const dummyLeads = [
-  {
-    name: "John Doe",
-    email: "john.doe@example.com",
-    phone: "555-0101",
-    address: "123 Main St, Anytown, USA"
-  },
-  {
-    name: "Jane Smith",
-    email: "jane.smith@example.com",
-    phone: "555-0102",
-    address: "456 Oak Ave, Anytown, USA"
-  },
-  {
-    name: "Bob Johnson",
-    email: "bob.j@example.com",
-    phone: "555-0103",
-    address: "789 Pine Rd, Anytown, USA"
-  },
-  {
-    name: "Alice Williams",
-    email: "alice.w@example.com",
-    phone: "555-0104",
-    address: "321 Elm St, Anytown, USA"
-  }
-];
 
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-// Main leads search endpoint
-app.post('/api/leads', (req, res) => {
-  try {
-    const { country, state, city, zip, socks5 } = req.body;
-
-    // Validation
-    if (!country || !state || !city) {
-      return res.status(400).json({ error: 'Country, State, and City are required' });
-    }
-
-    console.log(`Search request - Country: ${country}, State: ${state}, City: ${city}, Zip: ${zip}, Proxy: ${socks5 || 'None'}`);
-
-    // STUB: This is where you would integrate with:
-    // - Licensed data provider APIs
-    // - Your custom data sources
-    // - Proxy handling (if using SOCKS5)
-    // For now, returning dummy data
-
-    res.json(dummyLeads);
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+// API routes
+app.use('/api', leadsRouter);
 
 // 404 handler
 app.use((req, res) => {
@@ -76,6 +28,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`LeadGen Backend running on http://localhost:${PORT}`);
   console.log('Available endpoints:');
